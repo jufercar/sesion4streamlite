@@ -78,8 +78,8 @@ def create_filters(df):
         
         # Sex filter
         if 'sex' in df.columns:
-                sex_options = ['All'] + sorted(df['sex'].unique().tolist())
-                filters['sex'] = st.sidebar.selectbox("Sex:", sex_options)
+                sex_options = ['All'] + sorted(df['sex'].unique().tolist()) # genera una lista con 'All' y los valores unicos de sex
+                filters['sex'] = st.sidebar.selectbox("Sex:", sex_options) # crea un selectbox en la sidebar con las opciones
         
         # Class filter
         class_col = 'pclass' if 'pclass' in df.columns else 'class'
@@ -93,12 +93,12 @@ def create_filters(df):
                 filters['embarked'] = st.sidebar.selectbox("Port of Embarkation:", embarked_options)
         
         # Survival filter
-        if 'survived' in df.columns:
+        if 'survived' in df.columns: #utiliza multiselect para permitir seleccionar multiples opciones
                 survived_options = st.sidebar.multiselect(
                         "Survival:",
-                        options=[0, 1],
+                        options=[0, 1], # opciones posibles
                         default=[0, 1],
-                        format_func=lambda x: 'Did Not Survive' if x == 0 else 'Survived'
+                        format_func=lambda x: 'Did Not© Survive' if x == 0 else 'Survived'
                 )
                 filters['survived'] = survived_options
         
